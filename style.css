@@ -1,0 +1,565 @@
+/* ==========================================================
+   Lintas Motor - Showroom Mobil
+   Daftar isi: 1 Token, 2 Dasar, 3 Header, 4 Hero, 5 Katalog,
+   6 Kartu mobil, 7 Detail, 8 Keunggulan, 9 Footer, 10 Responsif
+   ========================================================== */
+
+/* 1. Token ------------------------------------------------ */
+:root {
+  --concrete: #eceef0;
+  --paper: #fafbfb;
+  --graphite: #171d22;
+  --muted: #5b666f;
+  --line: #d3d8dc;
+  --cobalt: #2146d6;
+  --cobalt-dark: #1735a8;
+  --ok: #1c7c54;
+  --ok-bg: #dff3e9;
+  --sold: #8a3b3b;
+  --sold-bg: #f5e1e1;
+
+  --font-display: "Archivo", "Arial Black", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 20px;
+  --shadow-lift: 0 18px 40px -22px rgba(23, 29, 34, 0.55);
+
+  --container: 1180px;
+  --header-h: 68px;
+}
+
+/* 2. Dasar ------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 12px);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--graphite);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-stretch: 118%;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 2px;
+}
+
+.container {
+  width: min(100% - 40px, var(--container));
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px; top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--graphite);
+  color: #fff;
+  border-radius: var(--radius-s);
+}
+.skip-link:focus { top: 12px; }
+
+/* Tombol */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 22px;
+  font: 700 0.95rem/1 var(--font-body);
+  border: 2px solid transparent;
+  border-radius: var(--radius-s);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.btn-primary { background: var(--cobalt); color: #fff; }
+.btn-primary:hover { background: var(--cobalt-dark); }
+.btn-outline { background: transparent; color: var(--graphite); border-color: var(--graphite); }
+.btn-outline:hover { background: var(--graphite); color: #fff; }
+.btn[disabled] { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+.btn-small { min-height: 40px; padding: 0 16px; font-size: 0.88rem; }
+
+.link-btn {
+  background: none; border: 0; padding: 6px 0;
+  font: 600 0.9rem var(--font-body);
+  color: var(--cobalt);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(100deg, #e3e6e8 30%, #f1f3f4 50%, #e3e6e8 70%);
+  background-size: 220% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+@keyframes shimmer { to { background-position: -220% 0; } }
+
+/* 3. Header ----------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-h);
+  background: rgba(250, 251, 251, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand-mark {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  background: var(--cobalt) url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M6 21l3-8h14l3 8M10 21v2m12-2v2' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 100% no-repeat;
+}
+.brand-name {
+  font-family: var(--font-display);
+  font-stretch: 118%;
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+.main-nav { display: flex; gap: 28px; margin-left: auto; }
+.main-nav a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--muted);
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+}
+.main-nav a:hover { color: var(--graphite); border-bottom-color: var(--cobalt); }
+
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.fav-count {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 40px; padding: 0 14px;
+  font: 700 0.9rem var(--font-body);
+  color: var(--graphite);
+  background: var(--concrete);
+  border: 0; border-radius: 999px;
+  cursor: pointer;
+}
+.fav-count svg { color: var(--cobalt); }
+
+.menu-toggle {
+  display: none;
+  width: 44px; height: 44px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.menu-toggle span { width: 20px; height: 2px; background: var(--graphite); transition: transform 0.2s, opacity 0.2s; }
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* 4. Hero -------------------------------------------------- */
+.hero {
+  background: var(--concrete);
+  padding: 64px 0 72px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: center;
+}
+.hero-copy h1 { font-size: clamp(2.2rem, 4.6vw, 3.7rem); max-width: 14ch; }
+.hero-lead { margin-top: 20px; max-width: 46ch; font-size: 1.1rem; color: var(--muted); }
+
+.hero-search {
+  display: flex;
+  gap: 10px;
+  margin-top: 32px;
+  max-width: 520px;
+}
+.hero-search input {
+  flex: 1;
+  min-width: 0;
+  min-height: 52px;
+  padding: 0 16px;
+  font: 500 1rem var(--font-body);
+  color: var(--graphite);
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-s);
+}
+.hero-search input:focus { border-color: var(--cobalt); outline: none; }
+.hero-search .btn { min-height: 52px; }
+
+.hero-quick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+
+.hero-stage { position: relative; }
+.hero-skeleton { aspect-ratio: 4 / 3; border-radius: var(--radius-l); }
+
+.hero-car {
+  position: relative;
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  background: var(--graphite);
+  box-shadow: var(--shadow-lift);
+}
+.hero-car img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Stiker harga ala kaca depan mobil di showroom */
+.price-sticker {
+  position: absolute;
+  left: 16px; bottom: 16px;
+  width: min(300px, calc(100% - 32px));
+  padding: 16px 18px;
+  background: #fff;
+  border: 2px solid var(--graphite);
+  border-radius: var(--radius-s);
+}
+.price-sticker::before {
+  content: "";
+  display: block;
+  margin: -16px -18px 14px;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, var(--graphite) 0 12px, #fff 12px 18px);
+}
+.sticker-brand { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+.sticker-name { font: 800 1.15rem/1.2 var(--font-display); font-stretch: 112%; margin-top: 2px; }
+.sticker-meta { margin-top: 8px; font-size: 0.88rem; color: var(--muted); }
+.sticker-price { margin-top: 10px; font: 800 1.5rem/1 var(--font-display); font-stretch: 112%; color: var(--cobalt); }
+.price-sticker .btn { margin-top: 14px; width: 100%; }
+
+/* 5. Katalog ----------------------------------------------- */
+.catalog { padding: 72px 0 80px; }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-bottom: 28px;
+}
+.section-head h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
+.result-count { color: var(--muted); font-weight: 500; }
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(4, 1fr);
+  gap: 14px;
+  padding: 18px;
+  background: var(--concrete);
+  border-radius: var(--radius-m);
+}
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field label { font-size: 0.85rem; font-weight: 700; }
+.field input, .field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 12px;
+  font: 500 0.95rem var(--font-body);
+  color: var(--graphite);
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: var(--radius-s);
+}
+.field input:focus, .field select:focus { border-color: var(--cobalt); outline: none; }
+
+.chip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin: 18px 0 28px;
+}
+.chips, .chip-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.chip-actions { gap: 16px; }
+
+.chip {
+  min-height: 38px;
+  padding: 0 16px;
+  font: 600 0.9rem var(--font-body);
+  color: var(--graphite);
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+.chip:hover { border-color: var(--graphite); }
+.chip[aria-pressed="true"] { background: var(--graphite); border-color: var(--graphite); color: #fff; }
+.hero-quick .chip { background: transparent; border-color: #b6bdc3; }
+.hero-quick .chip:hover { border-color: var(--graphite); }
+
+/* 6. Kartu mobil ------------------------------------------- */
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.2s;
+}
+.card:hover { border-color: var(--graphite); box-shadow: var(--shadow-lift); }
+
+.card-media { position: relative; margin: 0; background: var(--concrete); overflow: hidden; }
+.card-media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.card.is-sold .card-media img { filter: grayscale(1) contrast(0.9); opacity: 0.75; }
+
+.badge {
+  position: absolute;
+  left: 12px; top: 12px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 999px;
+}
+.badge-ok { background: var(--ok-bg); color: var(--ok); }
+.badge-sold { background: var(--sold-bg); color: var(--sold); }
+
+.fav-btn {
+  position: absolute;
+  right: 10px; top: 10px;
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  color: var(--graphite);
+  background: rgba(255, 255, 255, 0.94);
+  border: 0; border-radius: 50%;
+  cursor: pointer;
+}
+.fav-btn svg path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.fav-btn[aria-pressed="true"] { color: var(--cobalt); }
+.fav-btn[aria-pressed="true"] svg path { fill: currentColor; }
+
+.card-body { display: flex; flex-direction: column; flex: 1; padding: 18px 18px 20px; }
+.card-brand { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+.card-title { margin-top: 2px; font-size: 1.12rem; line-height: 1.25; font-stretch: 108%; }
+
+.specs {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin: 14px 0 18px;
+}
+.specs li {
+  padding: 3px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--graphite);
+  background: var(--concrete);
+  border-radius: var(--radius-s);
+}
+
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.price { font: 800 1.2rem/1.1 var(--font-display); font-stretch: 110%; }
+.price small { display: block; margin-bottom: 2px; font: 500 0.78rem var(--font-body); color: var(--muted); }
+
+/* Skeleton kartu */
+.card-skeleton { height: 400px; border-radius: var(--radius-m); }
+
+/* State: kosong / error */
+.state-box {
+  max-width: 460px;
+  margin: 24px auto 0;
+  padding: 40px 24px;
+  text-align: center;
+  background: var(--concrete);
+  border-radius: var(--radius-m);
+}
+.state-box h3 { font-size: 1.25rem; }
+.state-box p { margin: 10px 0 20px; color: var(--muted); }
+
+/* 7. Detail (dialog) --------------------------------------- */
+.detail {
+  width: min(960px, calc(100% - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: 0;
+  color: var(--graphite);
+  background: #fff;
+  border: 0;
+  border-radius: var(--radius-l);
+  overflow: auto;
+}
+.detail::backdrop { background: rgba(23, 29, 34, 0.62); }
+.detail[open] { animation: pop 0.22s ease-out; }
+@keyframes pop { from { opacity: 0; transform: translateY(14px); } }
+
+.detail-inner { display: grid; grid-template-columns: 1.05fr 1fr; position: relative; }
+.detail-photo { background: var(--concrete); }
+.detail-photo img { width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+.detail-info { padding: 32px 30px 30px; }
+.detail-info h2 { margin-top: 4px; font-size: 1.6rem; font-stretch: 112%; }
+.detail-price { margin-top: 14px; font: 800 1.9rem/1 var(--font-display); font-stretch: 112%; color: var(--cobalt); }
+
+.close-btn {
+  position: absolute;
+  right: 12px; top: 12px;
+  z-index: 2;
+  width: 42px; height: 42px;
+  font-size: 1.4rem; line-height: 1;
+  color: var(--graphite);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.spec-table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+.spec-table th, .spec-table td { padding: 9px 0; text-align: left; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+.spec-table th { width: 42%; font-weight: 500; color: var(--muted); }
+.spec-table td { font-weight: 700; }
+
+.credit {
+  margin-top: 22px;
+  padding: 16px;
+  background: var(--concrete);
+  border-radius: var(--radius-m);
+}
+.credit h3 { font-size: 1rem; font-stretch: 108%; }
+.credit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.credit label { display: block; margin-bottom: 4px; font-size: 0.85rem; font-weight: 700; }
+.credit input[type="range"] { width: 100%; accent-color: var(--cobalt); }
+.credit select {
+  width: 100%; min-height: 40px; padding: 0 10px;
+  font: 500 0.95rem var(--font-body);
+  background: #fff; border: 2px solid transparent; border-radius: var(--radius-s);
+}
+.credit-result { margin-top: 14px; padding-top: 12px; border-top: 1px dashed #aab2b8; }
+.credit-result strong { display: block; font: 800 1.4rem/1.2 var(--font-display); font-stretch: 110%; }
+.credit-result small { display: block; margin-top: 6px; color: var(--muted); font-size: 0.8rem; line-height: 1.4; }
+
+.detail-actions { display: flex; gap: 10px; margin-top: 20px; }
+.detail-actions .btn { flex: 1; }
+
+/* 8. Keunggulan -------------------------------------------- */
+.why { padding: 72px 0; background: var(--graphite); color: #fff; }
+.why-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: start; }
+.why h2 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 14ch; }
+.why-list li { padding: 22px 0; border-top: 1px solid #3a444c; }
+.why-list li:last-child { border-bottom: 1px solid #3a444c; }
+.why-list h3 { font-size: 1.1rem; font-stretch: 108%; }
+.why-list p { margin-top: 6px; max-width: 52ch; color: #b9c1c7; }
+
+/* 9. Footer ------------------------------------------------ */
+.site-footer { padding: 48px 0 36px; background: var(--concrete); }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
+.footer-brand { font: 800 1.2rem var(--font-display); font-stretch: 118%; }
+.footer-note { margin-top: 6px; color: var(--muted); }
+address { font-style: normal; }
+address p + p { margin-top: 4px; }
+address a { color: var(--cobalt); font-weight: 600; }
+.copyright { grid-column: 1 / -1; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--muted); }
+
+/* 10. Responsif -------------------------------------------- */
+@media (max-width: 1040px) {
+  .toolbar { grid-template-columns: repeat(2, 1fr); }
+  .field-search { grid-column: 1 / -1; }
+}
+
+@media (max-width: 860px) {
+  .hero { padding: 40px 0 48px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .hero-copy h1 { max-width: 18ch; }
+
+  .menu-toggle { display: flex; }
+  .main-nav {
+    position: absolute;
+    left: 0; right: 0; top: var(--header-h);
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 8px 20px 16px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    display: none;
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .header-actions { margin-left: auto; }
+
+  .detail-inner { grid-template-columns: 1fr; }
+  .detail-photo img { min-height: 0; aspect-ratio: 16 / 10; }
+  .detail-info { padding: 24px 20px 22px; }
+
+  .why-grid { grid-template-columns: 1fr; gap: 28px; }
+  .catalog { padding: 52px 0 60px; }
+  .why { padding: 52px 0; }
+}
+
+@media (max-width: 560px) {
+  .container { width: min(100% - 32px, var(--container)); }
+  .hero-search { flex-direction: column; }
+  .toolbar { grid-template-columns: 1fr; padding: 14px; }
+  .car-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .credit-row { grid-template-columns: 1fr; }
+  .detail-actions { flex-direction: column; }
+  .price-sticker { position: static; width: 100%; border-width: 0; border-top: 2px solid var(--graphite); border-radius: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

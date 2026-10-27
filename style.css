@@ -493,14 +493,47 @@ h1, h2, h3 {
 .detail-actions { display: flex; gap: 10px; margin-top: 20px; }
 .detail-actions .btn { flex: 1; }
 
+
 /* 8. Keunggulan -------------------------------------------- */
-.why { padding: 72px 0; background: var(--graphite); color: #fff; }
-.why-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: start; }
-.why h2 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 14ch; }
-.why-list li { padding: 22px 0; border-top: 1px solid #3a444c; }
-.why-list li:last-child { border-bottom: 1px solid #3a444c; }
-.why-list h3 { font-size: 1.1rem; font-stretch: 108%; }
-.why-list p { margin-top: 6px; max-width: 52ch; color: #b9c1c7; }
+.why {
+    padding: 72px 0;
+    background: var(--graphite);
+    color: #fff;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 56px;
+    align-items: stretch;
+}
+
+.why h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    max-width: 14ch;
+    align-self: center;
+}
+
+.why-list li {
+    padding: 22px 0;
+    border-top: 1px solid #3a444c;
+}
+
+.why-list li:last-child {
+    border-bottom: 1px solid #3a444c;
+}
+
+.why-list h3 {
+    font-size: 1.1rem;
+    font-stretch: 108%;
+}
+
+.why-list p {
+    margin-top: 6px;
+    max-width: 52ch;
+    color: #b9c1c7;
+}
+
 
 /* 9. Footer ------------------------------------------------ */
 .site-footer { padding: 48px 0 36px; background: var(--concrete); }

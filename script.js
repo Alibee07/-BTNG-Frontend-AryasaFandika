@@ -1,14 +1,10 @@
 'use strict';
 
-/* ==========================================================
-   Lintas Motor - Showroom Mobil
-   Alur: fetch API -> simpan di state -> filter/urutkan -> render DOM
-   ========================================================== */
 
 /* ---------- Konfigurasi ---------- */
 const API_URL = 'https://api-web.dnccudinus.org/api/mobil';
-const STORAGE_KEY = 'lintas-motor:favorit';
-const WA_NUMBER = '6281234567890'; // Ganti dengan nomor WhatsApp showroom
+const STORAGE_KEY = 'Yasha-Autocar:favorit';
+const WA_NUMBER = '62895800287546'; 
 const FALLBACK_IMG =
   'data:image/svg+xml;utf8,' +
   encodeURIComponent(

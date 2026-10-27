@@ -539,7 +539,7 @@ address p + p { margin-top: 4px; }
 address a { color: var(--cobalt); font-weight: 600; }
 .copyright { grid-column: 1 / -1; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--muted); }
 
-/* 10. Responsif -------------------------------------------- */
+/* 10. Responsif ------------------------------------------- */
 @media (max-width: 1040px) {
   .toolbar { grid-template-columns: repeat(2, 1fr); }
   .field-search { grid-column: 1 / -1; }

@@ -273,7 +273,7 @@ function resetFilters() {
   renderCatalog();
 }
 
-/* ---------- Render: hero ---------- */
+/* --------- Render: hero --------- */
 function renderHero() {
   const featured =
     state.cars.filter((car) => car.status === 'tersedia').sort((a, b) => b.harga - a.harga)[0] ||
